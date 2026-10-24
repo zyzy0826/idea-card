@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>靈感抽卡</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <h1 class="logo">✨ 靈感抽卡</h1>
+    <nav class="tabs" role="tablist">
+      <button class="tab active" type="button" role="tab" data-tab="draw" aria-selected="true">抽卡</button>
+      <button class="tab" type="button" role="tab" data-tab="gallery" aria-selected="false">圖鑑</button>
+    </nav>
+  </header>
+
+  <main>
+    <div id="load-error" class="load-error" hidden></div>
+
+    <section id="view-draw" class="view">
+      <div class="filters">
+        <div class="filter-group">
+          <span class="filter-label">流派</span>
+          <div class="chips" id="school-chips"></div>
+        </div>
+        <div class="filter-group">
+          <span class="filter-label">難度</span>
+          <div class="chips" id="rarity-chips"></div>
+        </div>
+        <p class="pool-count" id="pool-count"></p>
+      </div>
+
+      <div class="stage">
+        <div class="flash" id="flash"></div>
+        <div class="card" id="card">
+          <div class="card-inner">
+            <div class="card-face card-back">
+              <div class="back-emblem">?</div>
+              <p class="back-text">命運的卡片</p>
+            </div>
+            <div class="card-face card-front" id="card-front"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn-draw" id="draw-btn" type="button">抽卡</button>
+        <button class="btn btn-decide" id="decide-btn" type="button" hidden>就決定是它了！</button>
+      </div>
+    </section>
+
+    <section id="view-gallery" class="view" hidden>
+      <p class="gallery-intro">已經有想法了？直接點一張卡片吧。</p>
+      <div id="gallery"></div>
+    </section>
+  </main>
+
+  <dialog id="decide-dialog" class="dialog" aria-labelledby="dialog-title">
+    <div class="dialog-body">
+      <h2 class="dialog-title" id="dialog-title"></h2>
+
+      <label class="field-label" for="extra">補充你的想法（選填）</label>
+      <textarea id="extra" class="field" rows="3" placeholder="例如：我想讓中毒可以疊加"></textarea>
+
+      <label class="field-label" for="preview">即將複製的內容</label>
+      <textarea id="preview" class="field preview" rows="8" readonly></textarea>
+
+      <p class="manual-hint" id="manual-hint" hidden>
+        瀏覽器不讓我自動複製，文字已經幫你選好了，請按 Ctrl+C（手機請長按）手動複製。
+      </p>
+
+      <div class="dialog-actions">
+        <button class="btn btn-ghost" id="cancel-btn" type="button">取消</button>
+        <button class="btn btn-copy" id="copy-btn" type="button">📋 複製</button>
+      </div>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>

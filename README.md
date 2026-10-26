@@ -19,19 +19,20 @@
 
 ```json
 {
-  "id": "poison",
-  "emoji": "🧪",
-  "name": "中毒",
-  "school": "毒",
+  "id": "venom-arrow",
+  "emoji": "🏹",
+  "name": "淬毒箭",
+  "school": "劇毒",
   "rarity": "★",
   "description": "給學員看的機制說明",
-  "hint": "可以用 on_turn_start",
+  "hint": "在 on_attack 裡呼叫 poison(target, amount, turns)",
   "prompt": "決定後要複製給 Agent 的內容"
 }
 ```
 
 - `id` 不能重複。學員目前抽到的卡是用 `id` 記在瀏覽器裡的，改掉的話，原本抽到那張的學員重新整理後會回到卡背
-- `school` 可以自由新增，篩選按鈕和圖鑑分組會自動依照出現的流派產生
+- `school` 填自走棋的流派：`劇毒`、`聖盾`、`狂血`、`死靈`。篩選按鈕和圖鑑分組會自動依照出現的流派產生
+- `hint` 和 `prompt` 只能用框架真的有的事件和 API（`on_battle_start`、`on_attack`、`on_hurt`、`on_death`、`on_ally_death`；`deal_damage`、`poison`、`shield`、`drain`、`curse`……），寫不存在的東西學員的 AI 會做不出來
 - `rarity` 只能填 `★`、`★★`、`★★★`（普通 / 稀有 / 傳說）
 - 存檔前可以先用 [JSONLint](https://jsonlint.com/) 檢查格式，少一個逗號整個網頁都會讀不到資料
 
